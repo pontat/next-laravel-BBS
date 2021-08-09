@@ -4,7 +4,7 @@ type layoutType = {
   children: ReactNode
 }
 
-export default function layout({ children }: layoutType) {
+export default function Layout({ children }: layoutType) {
   return (
     <div className="min-h-screen bg-gray-200">
       <header className="p-3 bg-white border-b-4 border-indigo-600">
