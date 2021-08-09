@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>掲示板</title>
+        <title>Next.js×Laravel BBS</title>
         <meta name="description" content="Next.js×Laravel BBS" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
