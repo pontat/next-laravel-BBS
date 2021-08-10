@@ -27,7 +27,18 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $post = new Post();
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->save();
+
+        return response()->json([
+            'id' => $post->id,
+            'title' => mb_strimwidth($post->title, 0, 45, '...', 'UTF-8'),
+            'content' => mb_strimwidth($post->content, 0, 300, '...', 'UTF-8'),
+            'created_at' => $post->created_at->format('Y.m.d'),
+            'updated_at' => $post->updated_at->format('Y.m.d'),
+        ]);
     }
 
     public function show(Post $post)
