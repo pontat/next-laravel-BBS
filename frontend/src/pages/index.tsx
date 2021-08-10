@@ -1,7 +1,30 @@
+import { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import Pagination from '../components/pagination'
 
-export default function Home() {
+type Props = {
+  posts: Post[]
+}
+
+type Post = {
+  id: number
+  title: string
+  content: string
+  created_at: string
+  updated_at: string
+}
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const posts = await fetch(`${process.env.BACKEND_URL}/api/posts`).then((response) => response.json())
+  return {
+    props: {
+      posts,
+    },
+    revalidate: 10,
+  }
+}
+
+const Home: NextPage<Props> = (props) => {
   return (
     <>
       <div className="flex">
@@ -10,17 +33,17 @@ export default function Home() {
         </Link>
       </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-3">
-        {[1, 2, 3].map((post, index) => (
-          <div className="bg-white shadow rounded overflow-hidden" key={index}>
+        {props.posts.map((post) => (
+          <div className="bg-white shadow rounded overflow-hidden" key={post.id}>
             <div className="p-4">
-              <h3 className="text-lg font-bold text-gray-900">掲示板のタイトル</h3>
+              <h3 className="text-lg font-bold text-gray-900">{post.title}</h3>
             </div>
             <dl>
               <div className="px-4 py-2 bg-gray-100">
-                <dd className="text-sm text-gray-900">内容が入ります。内容が入ります。内容が入ります。内容が入ります。</dd>
+                <dd className="text-sm text-gray-900">{post.content}</dd>
               </div>
               <div className="flex justify-between p-4 bg-white">
-                <dt className="text-sm font-medium text-gray-500">2020.12.28</dt>
+                <dt className="text-sm font-medium text-gray-500">{post.created_at}</dt>
                 <Link href="/posts/1">
                   <a className="text-sm text-indigo-600 hover:text-indigo-500">詳細</a>
                 </Link>
@@ -35,3 +58,5 @@ export default function Home() {
     </>
   )
 }
+
+export default Home
