@@ -1,6 +1,5 @@
 import { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
-import Pagination from '../components/pagination'
 
 type Props = {
   posts: Post[]
@@ -51,9 +50,6 @@ const Home: NextPage<Props> = (props) => {
             </dl>
           </div>
         ))}
-      </div>
-      <div className="mt-5 flex justify-center">
-        <Pagination></Pagination>
       </div>
     </>
   )
