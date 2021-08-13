@@ -9,7 +9,7 @@ const Posts: NextPage<{}> = () => {
   const [content, setContent] = useState('')
 
   const createPost = async (): Promise<void> => {
-    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/posts`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/posts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,7 +19,8 @@ const Posts: NextPage<{}> = () => {
         content,
       }),
     })
-    router.push('/')
+
+    response.status === 200 ? router.push('/') : alert(response.statusText)
   }
 
   return (
