@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $posts = Post::latest()->get();
 
@@ -25,7 +26,7 @@ class PostController extends Controller
         return response()->json($formatPosts);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $post = new Post();
         $post->title = $request->title;
@@ -41,7 +42,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(int $id)
+    public function show(int $id): JsonResponse
     {
         $post = Post::with('comments')->findOrFail($id);
 
@@ -64,15 +65,5 @@ class PostController extends Controller
             'updated_at' => $post->updated_at->format('Y.m.d'),
             'comments' => $formatComments,
         ]);
-    }
-
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
-
-    public function destroy(Post $post)
-    {
-        //
     }
 }
