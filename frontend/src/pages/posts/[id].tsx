@@ -1,16 +1,9 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
+import type { Post } from '../types/post'
 
 type Props = {
   post: Post
-}
-
-type Post = {
-  id: number
-  title: string
-  content: string
-  created_at: string
-  updated_at: string
 }
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
