@@ -43,7 +43,18 @@ class PostController extends Controller
 
     public function show(int $id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::with('comments')->findOrFail($id);
+
+        $formatComments = [];
+        foreach ($post->comments as $comment) {
+            $formatComments[] = [
+                'id' => $comment->id,
+                'post_id' => $comment->post_id,
+                'content' => $comment->content,
+                'created_at' => $post->created_at->format('Y.m.d'),
+                'updated_at' => $post->updated_at->format('Y.m.d'),
+            ];
+        }
 
         return response()->json([
             'id' => $post->id,
@@ -51,6 +62,7 @@ class PostController extends Controller
             'content' => $post->content,
             'created_at' => $post->created_at->format('Y.m.d'),
             'updated_at' => $post->updated_at->format('Y.m.d'),
+            'comments' => $formatComments,
         ]);
     }
 

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import type { Post } from '../types/post'
@@ -26,6 +27,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const Page: NextPage<Props> = (props) => {
   const post = props.post
+  const [comments, setComments] = useState(props.post.comments)
 
   return (
     <>
@@ -64,14 +66,16 @@ const Page: NextPage<Props> = (props) => {
           <button className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md">コメントする</button>
         </div>
       </div>
-      <div className="mt-5 bg-white shadow rounded overflow-hidden">
-        <div className="p-4 bg-white">
-          <p className="text-sm text-gray-900">内容が入ります。内容が入ります。内容が入ります。内容が入ります。</p>
+      {comments.map((comment) => (
+        <div className="mt-5 bg-white shadow rounded overflow-hidden" key={comment.id}>
+          <div className="p-4 bg-white">
+            <p className="text-sm text-gray-900">{comment.content}</p>
+          </div>
+          <div className="px-4 py-3 bg-gray-100">
+            <p className="text-sm font-medium text-gray-500">{comment.created_at}</p>
+          </div>
         </div>
-        <div className="px-4 py-3 bg-gray-100">
-          <p className="text-sm font-medium text-gray-500">2020.12.28</p>
-        </div>
-      </div>
+      ))}
     </>
   )
 }
