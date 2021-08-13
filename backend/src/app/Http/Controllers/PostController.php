@@ -41,9 +41,17 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(Post $post)
+    public function show(int $id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        return response()->json([
+            'id' => $post->id,
+            'title' => $post->title,
+            'content' => $post->content,
+            'created_at' => $post->created_at->format('Y.m.d'),
+            'updated_at' => $post->updated_at->format('Y.m.d'),
+        ]);
     }
 
     public function update(Request $request, Post $post)

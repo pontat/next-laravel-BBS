@@ -43,7 +43,7 @@ const Home: NextPage<Props> = (props) => {
               </div>
               <div className="flex justify-between p-4 bg-white">
                 <dt className="text-sm font-medium text-gray-500">{post.created_at}</dt>
-                <Link href="/posts/1">
+                <Link href={`/posts/${post.id}`}>
                   <a className="text-sm text-indigo-600 hover:text-indigo-500">詳細</a>
                 </Link>
               </div>
