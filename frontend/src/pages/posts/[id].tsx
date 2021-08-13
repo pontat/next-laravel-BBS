@@ -24,7 +24,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-const Post: NextPage<Props> = (props) => {
+const Page: NextPage<Props> = (props) => {
   const post = props.post
 
   return (
@@ -76,4 +76,4 @@ const Post: NextPage<Props> = (props) => {
   )
 }
 
-export default Post
+export default Page
