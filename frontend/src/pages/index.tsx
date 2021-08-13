@@ -17,6 +17,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 }
 
 const Home: NextPage<Props> = (props) => {
+  const posts = props.posts
+
   return (
     <>
       <div className="flex">
@@ -25,7 +27,7 @@ const Home: NextPage<Props> = (props) => {
         </Link>
       </div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-3">
-        {props.posts.map((post) => (
+        {posts.map((post) => (
           <div className="bg-white shadow rounded overflow-hidden" key={post.id}>
             <div className="p-4">
               <h3 className="text-lg font-bold text-gray-900">{post.title}</h3>
