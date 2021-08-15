@@ -28,6 +28,27 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const Page: NextPage<Props> = (props) => {
   const post = props.post
   const [comments, setComments] = useState(props.post.comments)
+  const [content, setContent] = useState('')
+
+  const storeComment = async (): Promise<void> => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/posts/${post.id}/comment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content,
+      }),
+    })
+
+    if (response.status === 200) {
+      const storedComment = await response.json()
+      setComments([...comments, storedComment])
+      setContent('')
+    } else {
+      alert(response.statusText)
+    }
+  }
 
   return (
     <>
@@ -59,11 +80,20 @@ const Page: NextPage<Props> = (props) => {
             <label htmlFor="comment" className="text-sm font-bold text-gray-900">
               コメント
             </label>
-            <input type="text" id="comment" placeholder="コメントを入力" className="w-full p-3 bg-white text-sm border border-blueGray-300 rounded" />
+            <input
+              type="text"
+              id="comment"
+              placeholder="コメントを入力"
+              className="w-full p-3 bg-white text-sm border border-blueGray-300 rounded"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
           </div>
         </div>
         <div className="flex px-4 py-3 bg-gray-100">
-          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md">コメントする</button>
+          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md" onClick={storeComment}>
+            コメントする
+          </button>
         </div>
       </div>
       {comments.map((comment) => (

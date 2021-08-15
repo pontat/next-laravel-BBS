@@ -3,32 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function index()
+    public function store(Request $request, int $id): JsonResponse
     {
-        //
-    }
+        $comment = new Comment();
+        $comment->post_id = $id;
+        $comment->content = $request->content;
+        $comment->save();
 
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    public function update(Request $request, Comment $comment)
-    {
-        //
-    }
-
-    public function destroy(Comment $comment)
-    {
-        //
+        return response()->json([
+            'id' => $comment->id,
+            'post_id' => $comment->post_id,
+            'content' => $comment->content,
+            'created_at' => $comment->created_at->format('Y.m.d'),
+            'updated_at' => $comment->updated_at->format('Y.m.d'),
+        ]);
     }
 }
