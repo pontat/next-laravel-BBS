@@ -8,7 +8,7 @@ const Posts: NextPage<{}> = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
-  const createPost = async (): Promise<void> => {
+  const storePost = async (): Promise<void> => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/posts`, {
       method: 'POST',
       headers: {
@@ -54,7 +54,7 @@ const Posts: NextPage<{}> = () => {
           </div>
         </div>
         <div className="flex justify-between px-4 py-3 bg-gray-100">
-          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md" onClick={createPost}>
+          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md" onClick={storePost}>
             投稿する
           </button>
           <Link href="/">
