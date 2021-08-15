@@ -46,8 +46,8 @@ class PostController extends Controller
                 'id' => $comment->id,
                 'post_id' => $comment->post_id,
                 'content' => $comment->content,
-                'created_at' => $post->created_at->format('Y.m.d'),
-                'updated_at' => $post->updated_at->format('Y.m.d'),
+                'created_at' => $comment->created_at->format('Y.m.d'),
+                'updated_at' => $comment->updated_at->format('Y.m.d'),
             ];
         }
 
