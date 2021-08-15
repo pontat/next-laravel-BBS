@@ -21,4 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('posts', PostController::class, ['only' => ['index', 'store', 'show']]);
-Route::resource('posts/{id}/comment', CommentController::class, ['only' => 'store']);
+Route::resource('posts/{id}/comments', CommentController::class, ['only' => 'store']);
