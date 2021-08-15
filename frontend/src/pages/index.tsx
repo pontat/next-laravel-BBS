@@ -26,14 +26,14 @@ const Home: NextPage<Props> = (props) => {
           <a className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md cursor-pointer">新規作成</a>
         </Link>
       </div>
-      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-3">
+      <div className="grid gap-4 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mt-3">
         {posts.map((post) => (
           <div className="bg-white shadow rounded overflow-hidden" key={post.id}>
             <div className="p-4">
               <h3 className="text-lg font-bold text-gray-900">{post.title}</h3>
             </div>
             <dl>
-              <div className="px-4 py-2 bg-gray-100">
+              <div className="px-4 py-2 bg-gray-100" style={{ minHeight: '76px' }}>
                 <dd className="text-sm text-gray-900">{post.content}</dd>
               </div>
               <div className="flex justify-between p-4 bg-white">
