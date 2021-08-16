@@ -1,15 +1,13 @@
 import { useCallback, useState } from 'react'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType, NextPage } from 'next'
 import Link from 'next/link'
 import type { Post } from '../index'
 
-type Props = {
-  post: Post
-}
+type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const id = params?.id
-  const post = await fetch(`${process.env.BACKEND_URL}/api/posts/${id}`).then((response) => response.json())
+export const getStaticProps = async (context: GetStaticPropsContext) => {
+  const id = context.params?.id
+  const post: Post = await fetch(`${process.env.BACKEND_URL}/api/posts/${id}`).then((response) => response.json())
   return {
     props: {
       post,

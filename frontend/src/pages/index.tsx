@@ -1,9 +1,7 @@
-import { GetStaticProps, NextPage } from 'next'
+import { InferGetStaticPropsType, NextPage } from 'next'
 import Link from 'next/link'
 
-type Props = {
-  posts: Post[]
-}
+type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 export type Post = {
   id: number
@@ -22,8 +20,8 @@ export type Comment = {
   updated_at: string
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const posts = await fetch(`${process.env.BACKEND_URL}/api/posts`).then((response) => response.json())
+export const getStaticProps = async () => {
+  const posts: Post[] = await fetch(`${process.env.BACKEND_URL}/api/posts`).then((response) => response.json())
   return {
     props: {
       posts,
