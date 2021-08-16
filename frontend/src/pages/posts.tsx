@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -8,7 +8,7 @@ const Posts: NextPage<{}> = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
-  const storePost = async (): Promise<void> => {
+  const storePost = useCallback(async (): Promise<void> => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/posts`, {
       method: 'POST',
       headers: {
@@ -21,7 +21,7 @@ const Posts: NextPage<{}> = () => {
     })
 
     response.status === 200 ? router.push('/') : alert(response.statusText)
-  }
+  }, [title, content, router])
 
   return (
     <>

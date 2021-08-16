@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
 import type { Post } from '../types/post'
@@ -30,7 +30,7 @@ const Page: NextPage<Props> = (props) => {
   const [comments, setComments] = useState(props.post.comments)
   const [content, setContent] = useState('')
 
-  const storeComment = async (): Promise<void> => {
+  const storeComment = useCallback(async (): Promise<void> => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/posts/${post.id}/comments`, {
       method: 'POST',
       headers: {
@@ -48,7 +48,7 @@ const Page: NextPage<Props> = (props) => {
     } else {
       alert(response.statusText)
     }
-  }
+  }, [post.id, content, comments])
 
   return (
     <>
