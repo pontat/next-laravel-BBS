@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
-import type { Post } from '../types/post'
+import type { Post } from '../index'
 
 type Props = {
   post: Post
