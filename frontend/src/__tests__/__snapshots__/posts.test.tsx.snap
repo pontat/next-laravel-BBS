@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`新規作成ページ 1`] = `
+<div>
+  <h3
+    class="text-lg font-bold leading-6 text-gray-900"
+  >
+    新規作成
+  </h3>
+  <div
+    class="mt-5 shadow rounded overflow-hidden"
+  >
+    <div
+      class="p-4 bg-white space-y-6"
+    >
+      <div>
+        <label
+          class="text-sm font-bold text-gray-900"
+          for="title"
+        >
+          タイトル
+        </label>
+        <input
+          class="w-full p-3 bg-white text-sm border border-blueGray-300 rounded"
+          id="title"
+          placeholder="タイトルを入力"
+          type="text"
+        />
+      </div>
+      <div>
+        <label
+          class="text-sm font-bold text-gray-900"
+          for="content"
+        >
+          内容
+        </label>
+        <textarea
+          class="w-full p-3 bg-white text-sm border border-blueGray-300 rounded"
+          id="content"
+          placeholder="内容を入力"
+          rows="5"
+        />
+      </div>
+    </div>
+    <div
+      class="flex justify-between px-4 py-3 bg-gray-100"
+    >
+      <button
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md"
+      >
+        投稿する
+      </button>
+      <a
+        class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-sm font-bold text-white rounded shadow hover:shadow-md cursor-pointer"
+        href="/"
+      >
+        戻る
+      </a>
+    </div>
+  </div>
+</div>
+`;

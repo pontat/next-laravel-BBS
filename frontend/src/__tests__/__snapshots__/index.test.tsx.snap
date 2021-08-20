@@ -1,0 +1,140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`一覧ページ 1`] = `
+<div>
+  <div
+    class="flex"
+  >
+    <a
+      class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md cursor-pointer"
+      href="/posts"
+    >
+      新規作成
+    </a>
+  </div>
+  <div
+    class="grid gap-4 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mt-3"
+  >
+    <div
+      class="bg-white shadow rounded overflow-hidden"
+    >
+      <div
+        class="p-4"
+      >
+        <h3
+          class="text-lg font-bold text-gray-900"
+        >
+          テストタイトル1
+        </h3>
+      </div>
+      <dl>
+        <div
+          class="px-4 py-2 bg-gray-100"
+          style="min-height: 76px;"
+        >
+          <dd
+            class="text-sm text-gray-900"
+          >
+            テスト内容1
+          </dd>
+        </div>
+        <div
+          class="flex justify-between p-4 bg-white"
+        >
+          <dt
+            class="text-sm font-medium text-gray-500"
+          >
+            2021.01.01
+          </dt>
+          <a
+            class="text-sm text-indigo-600 hover:text-indigo-500"
+            href="/posts/1"
+          >
+            詳細
+          </a>
+        </div>
+      </dl>
+    </div>
+    <div
+      class="bg-white shadow rounded overflow-hidden"
+    >
+      <div
+        class="p-4"
+      >
+        <h3
+          class="text-lg font-bold text-gray-900"
+        >
+          テストタイトル2
+        </h3>
+      </div>
+      <dl>
+        <div
+          class="px-4 py-2 bg-gray-100"
+          style="min-height: 76px;"
+        >
+          <dd
+            class="text-sm text-gray-900"
+          >
+            テスト内容2
+          </dd>
+        </div>
+        <div
+          class="flex justify-between p-4 bg-white"
+        >
+          <dt
+            class="text-sm font-medium text-gray-500"
+          >
+            2021.01.01
+          </dt>
+          <a
+            class="text-sm text-indigo-600 hover:text-indigo-500"
+            href="/posts/2"
+          >
+            詳細
+          </a>
+        </div>
+      </dl>
+    </div>
+    <div
+      class="bg-white shadow rounded overflow-hidden"
+    >
+      <div
+        class="p-4"
+      >
+        <h3
+          class="text-lg font-bold text-gray-900"
+        >
+          テストタイトル3
+        </h3>
+      </div>
+      <dl>
+        <div
+          class="px-4 py-2 bg-gray-100"
+          style="min-height: 76px;"
+        >
+          <dd
+            class="text-sm text-gray-900"
+          >
+            テスト内容3
+          </dd>
+        </div>
+        <div
+          class="flex justify-between p-4 bg-white"
+        >
+          <dt
+            class="text-sm font-medium text-gray-500"
+          >
+            2021.01.01
+          </dt>
+          <a
+            class="text-sm text-indigo-600 hover:text-indigo-500"
+            href="/posts/3"
+          >
+            詳細
+          </a>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+`;

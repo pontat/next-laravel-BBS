@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`詳細ページ 1`] = `
+<div>
+  <h3
+    class="text-lg font-bold leading-6 text-gray-900"
+  >
+    詳細
+  </h3>
+  <div
+    class="mt-5 shadow rounded overflow-hidden"
+  >
+    <div
+      class="p-4 bg-white space-y-6"
+    >
+      <div>
+        <div
+          class="text-sm font-bold text-gray-900"
+        >
+          タイトル
+        </div>
+        <div
+          class="text-sm text-gray-900"
+        >
+          テストタイトル
+        </div>
+      </div>
+      <div>
+        <div
+          class="text-sm font-bold text-gray-900"
+        >
+          内容
+        </div>
+        <div
+          class="text-sm text-gray-900 whitespace-pre-wrap"
+        >
+          テスト内容
+        </div>
+      </div>
+      <div>
+        <div
+          class="text-sm font-bold text-gray-900"
+        >
+          投稿日
+        </div>
+        <div
+          class="text-sm text-gray-900"
+        >
+          2021.01.01
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex px-4 py-3 bg-gray-100"
+    >
+      <a
+        class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-sm font-bold text-white rounded shadow hover:shadow-md cursor-pointer"
+        href="/"
+      >
+        戻る
+      </a>
+    </div>
+  </div>
+  <div
+    class="mt-5 shadow rounded overflow-hidden"
+  >
+    <div
+      class="p-4 bg-white space-y-6"
+    >
+      <div>
+        <label
+          class="text-sm font-bold text-gray-900"
+          for="comment"
+        >
+          コメント
+        </label>
+        <input
+          class="w-full p-3 bg-white text-sm border border-blueGray-300 rounded"
+          id="comment"
+          placeholder="コメントを入力"
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      class="flex px-4 py-3 bg-gray-100"
+    >
+      <button
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md"
+      >
+        コメントする
+      </button>
+    </div>
+  </div>
+  <div
+    class="mt-5 bg-white shadow rounded overflow-hidden"
+  >
+    <div
+      class="p-4 bg-white"
+    >
+      <p
+        class="text-sm text-gray-900"
+      >
+        テストコメント1
+      </p>
+    </div>
+    <div
+      class="px-4 py-3 bg-gray-100"
+    >
+      <p
+        class="text-sm font-medium text-gray-500"
+      >
+        2021.01.01
+      </p>
+    </div>
+  </div>
+  <div
+    class="mt-5 bg-white shadow rounded overflow-hidden"
+  >
+    <div
+      class="p-4 bg-white"
+    >
+      <p
+        class="text-sm text-gray-900"
+      >
+        テストコメント2
+      </p>
+    </div>
+    <div
+      class="px-4 py-3 bg-gray-100"
+    >
+      <p
+        class="text-sm font-medium text-gray-500"
+      >
+        2021.01.01
+      </p>
+    </div>
+  </div>
+  <div
+    class="mt-5 bg-white shadow rounded overflow-hidden"
+  >
+    <div
+      class="p-4 bg-white"
+    >
+      <p
+        class="text-sm text-gray-900"
+      >
+        テストコメント3
+      </p>
+    </div>
+    <div
+      class="px-4 py-3 bg-gray-100"
+    >
+      <p
+        class="text-sm font-medium text-gray-500"
+      >
+        2021.01.01
+      </p>
+    </div>
+  </div>
+</div>
+`;
