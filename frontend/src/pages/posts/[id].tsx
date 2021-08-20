@@ -28,7 +28,7 @@ const Page: NextPage<Props> = (props) => {
   const [comments, setComments] = useState(props.post.comments)
   const [content, setContent] = useState('')
 
-  const storeComment = useCallback(async (): Promise<void> => {
+  const storeComment = async (): Promise<void> => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/posts/${post.id}/comments`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -44,7 +44,7 @@ const Page: NextPage<Props> = (props) => {
     } else {
       alert(response.statusText)
     }
-  }, [post.id, content, comments])
+  }
 
   return (
     <>

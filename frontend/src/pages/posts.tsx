@@ -8,7 +8,7 @@ const Posts: NextPage<{}> = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
-  const storePost = useCallback(async (): Promise<void> => {
+  const storePost = async (): Promise<void> => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/posts`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -19,7 +19,7 @@ const Posts: NextPage<{}> = () => {
     })
 
     response.status === 200 ? router.push('/') : alert(response.statusText)
-  }, [title, content, router])
+  }
 
   return (
     <>
