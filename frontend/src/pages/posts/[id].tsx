@@ -5,9 +5,21 @@ import type { Post } from '../index'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
+type PostComments = Post & {
+  comments: Comment[]
+}
+
+type Comment = {
+  id: number
+  post_id: number
+  content: string
+  created_at: string
+  updated_at: string
+}
+
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const id = context.params?.id
-  const post: Post = await fetch(`${process.env.BACKEND_URL}/api/posts/${id}`).then((response) => response.json())
+  const post: PostComments = await fetch(`${process.env.BACKEND_URL}/api/posts/${id}`).then((response) => response.json())
   return {
     props: {
       post,
@@ -25,8 +37,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const Page: NextPage<Props> = (props) => {
   const post = props.post
-  const [comments, setComments] = useState(props.post.comments)
-  const [content, setContent] = useState('')
+  const [comments, setComments] = useState<Comment[]>(props.post.comments)
+  const [content, setContent] = useState<string>('')
 
   const storeComment = async (): Promise<void> => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/posts/${post.id}/comments`, {

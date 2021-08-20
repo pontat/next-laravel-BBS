@@ -5,8 +5,8 @@ import { useRouter } from 'next/router'
 
 const Posts: NextPage<{}> = () => {
   const router = useRouter()
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
+  const [title, setTitle] = useState<string>('')
+  const [content, setContent] = useState<string>('')
 
   const storePost = async (): Promise<void> => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/posts`, {
