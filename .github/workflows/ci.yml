@@ -6,11 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 
-defaults:
-  runs-on: ubuntu-latest
-
 jobs:
   frontend-tests:
+    runs-on: ubuntu-latest
     run:
       working-directory: ./frontend/src
 
@@ -30,6 +28,7 @@ jobs:
         run: yarn test
 
   backend-tests:
+    runs-on: ubuntu-latest
     run:
       working-directory: ./backend/src
 
