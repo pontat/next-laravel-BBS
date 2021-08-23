@@ -6,13 +6,13 @@ on:
   pull_request:
     branches: [ main ]
 
+defaults:
+  runs-on: ubuntu-latest
+
 jobs:
   frontend-tests:
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./frontend/src
+    run:
+      working-directory: ./frontend/src
 
     steps:
       - uses: actions/checkout@v2
@@ -30,11 +30,8 @@ jobs:
         run: yarn test
 
   backend-tests:
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: ./backend/src
+    run:
+      working-directory: ./backend/src
 
     services:
       mysql:
