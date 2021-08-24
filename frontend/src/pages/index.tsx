@@ -28,7 +28,7 @@ const Home: NextPage<Props> = (props) => {
     <>
       <div className="flex">
         <Link href="/posts">
-          <a className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md cursor-pointer">新規作成</a>
+          <a className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md">新規作成</a>
         </Link>
       </div>
       <div className="grid gap-4 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mt-3">

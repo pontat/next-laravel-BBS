@@ -78,7 +78,7 @@ const Page: NextPage<Props> = (props) => {
         </div>
         <div className="flex px-4 py-3 bg-gray-100">
           <Link href="/">
-            <a className="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-sm font-bold text-white rounded shadow hover:shadow-md cursor-pointer">戻る</a>
+            <a className="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-sm font-bold text-white rounded shadow hover:shadow-md">戻る</a>
           </Link>
         </div>
       </div>
