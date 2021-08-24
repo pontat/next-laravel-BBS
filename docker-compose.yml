@@ -29,5 +29,9 @@ services:
     environment:
       MYSQL_DATABASE: laravel
       MYSQL_ROOT_PASSWORD: password
+  infra:
+    build: ./infra/
+    volumes:
+      - ./infra/src:/app
 volumes:
   mysql_volume:
