@@ -6,7 +6,7 @@ exports[`一覧ページ 1`] = `
     class="flex"
   >
     <a
-      class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md cursor-pointer"
+      class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-sm font-bold text-white rounded shadow hover:shadow-md"
       href="/posts"
     >
       新規作成

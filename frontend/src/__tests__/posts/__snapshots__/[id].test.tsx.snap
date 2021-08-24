@@ -54,7 +54,7 @@ exports[`詳細ページ 1`] = `
       class="flex px-4 py-3 bg-gray-100"
     >
       <a
-        class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-sm font-bold text-white rounded shadow hover:shadow-md cursor-pointer"
+        class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-sm font-bold text-white rounded shadow hover:shadow-md"
         href="/"
       >
         戻る
