@@ -2,18 +2,24 @@ version: '3.9'
 
 services:
   backend:
-    build: ./backend/
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
     volumes:
       - ./backend/src:/var/www
   frontend:
-    build: ./frontend/
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
     volumes:
       - ./frontend/src:/app
     command: 'yarn dev'
     ports:
       - 3000:3000
   nginx:
-    build: ./nginx/
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
     ports:
       - 80:80
     volumes:
@@ -22,6 +28,7 @@ services:
       - backend
   mysql:
     image: mysql:5.7
+    platform: linux/amd64
     ports:
       - 3306:3306
     volumes:
@@ -30,8 +37,18 @@ services:
       MYSQL_DATABASE: laravel
       MYSQL_ROOT_PASSWORD: password
   infra:
-    build: ./infra/
+    build:
+      context: .
+      dockerfile: ./infra/Dockerfile
     volumes:
       - ./infra/src:/app
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+      AWS_DEFAULT_OUTPUT: ${AWS_DEFAULT_OUTPUT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
 volumes:
   mysql_volume:
