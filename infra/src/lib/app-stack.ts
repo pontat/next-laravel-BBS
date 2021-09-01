@@ -24,11 +24,12 @@ export class AppStack extends cdk.Stack {
 
     const vpc = new ec2.Vpc(this, 'vpc', {
       maxAzs: 2,
+      natGateways: 1,
       cidr: '10.0.0.0/16',
       subnetConfiguration: [
         { cidrMask: 24, name: 'alb_public_', subnetType: ec2.SubnetType.PUBLIC },
-        { cidrMask: 24, name: 'ecs_public_', subnetType: ec2.SubnetType.ISOLATED },
-        { cidrMask: 24, name: 'rds_private_', subnetType: ec2.SubnetType.ISOLATED },
+        { cidrMask: 24, name: 'ecs_private_', subnetType: ec2.SubnetType.PRIVATE },
+        { cidrMask: 24, name: 'rds_isolated_', subnetType: ec2.SubnetType.ISOLATED },
       ],
     })
     cdk.Tags.of(vpc).add('Name', `${resourcesPrefix}-vpc`)
@@ -38,10 +39,15 @@ export class AppStack extends cdk.Stack {
     albSg.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic())
     cdk.Tags.of(albSg).add('Name', `${resourcesPrefix}-alb-Sg`)
 
-    const dbSg = new ec2.SecurityGroup(this, 'dbSg', { vpc, allowAllOutbound: true })
-    dbSg.addIngressRule(ec2.Peer.ipv4('10.0.0.0/16'), ec2.Port.tcp(3306))
-    dbSg.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic())
-    cdk.Tags.of(dbSg).add('Name', `${resourcesPrefix}-db-Sg`)
+    const ecsSg = new ec2.SecurityGroup(this, 'ecsSg', { vpc, allowAllOutbound: true })
+    ecsSg.addIngressRule(ec2.Peer.ipv4('10.0.0.0/16'), ec2.Port.tcp(80))
+    ecsSg.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic())
+    cdk.Tags.of(ecsSg).add('Name', `${resourcesPrefix}-ecs-Sg`)
+
+    const rdsSg = new ec2.SecurityGroup(this, 'rdsSg', { vpc, allowAllOutbound: true })
+    rdsSg.addIngressRule(ec2.Peer.ipv4('10.0.0.0/16'), ec2.Port.tcp(3306))
+    rdsSg.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic())
+    cdk.Tags.of(rdsSg).add('Name', `${resourcesPrefix}-db-Sg`)
 
     const db = new rds.DatabaseInstance(this, 'db', {
       vpc,
@@ -57,7 +63,7 @@ export class AppStack extends cdk.Stack {
       },
       port: 3306,
       multiAz: false,
-      securityGroups: [dbSg],
+      securityGroups: [rdsSg],
     })
     cdk.Tags.of(db).add('Name', `${resourcesPrefix}-db`)
 
@@ -116,7 +122,8 @@ export class AppStack extends cdk.Stack {
     nginxContainer.addVolumesFrom({ sourceContainer: 'app', readOnly: false })
     taskDefinition.defaultContainer = nginxContainer
 
-    const ecsService = new ecs.FargateService(this, 'DefaultService', {
+    const ecsService = new ecs.FargateService(this, 'ecsService', {
+      vpcSubnets: { subnets: vpc.privateSubnets },
       serviceName: `${resourcesPrefix}-service`,
       cluster,
       taskDefinition,
@@ -124,11 +131,12 @@ export class AppStack extends cdk.Stack {
       minHealthyPercent: 100,
       maxHealthyPercent: 200,
       assignPublicIp: true,
-      securityGroups: [albSg, dbSg],
+      securityGroup: ecsSg,
     })
 
     const alb = new elbv2.ApplicationLoadBalancer(this, 'alb', {
       vpc,
+      vpcSubnets: { subnets: vpc.publicSubnets },
       securityGroup: albSg,
       internetFacing: true,
     })
